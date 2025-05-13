@@ -1,0 +1,62 @@
+
+version: 2
+
+sources:
+  - name: public
+    tables:
+      - name: raw_entretiens
+        columns:
+          - name: year
+            data_type: double precision
+          - name: date
+            data_type: timestamp without time zone
+          - name: vehicule
+            data_type: text
+          - name: kms
+            data_type: double precision
+          - name: types
+            data_type: text
+          - name: cat
+            data_type: text
+          - name: operation
+            data_type: text
+          - name: description
+            data_type: text
+          - name: coast
+            data_type: double precision
+          - name: supplier
+            data_type: text
+      - name: raw_conso
+        columns:
+          - name: date
+            data_type: timestamp without time zone
+          - name: type_vehicule
+            data_type: text
+          - name: immat
+            data_type: text
+          - name: score_heure
+            data_type: double precision
+          - name: vitesse
+            data_type: bigint
+          - name: frein_brusques
+            data_type: bigint
+          - name: acc_brusques
+            data_type: bigint
+          - name: virages_brusques
+            data_type: bigint
+          - name: surregime
+            data_type: bigint
+          - name: total_points
+            data_type: bigint
+          - name: temps
+            data_type: text
+          - name: distance
+            data_type: double precision
+          - name: conso
+            data_type: double precision
+      - name: raw_immat
+        columns:
+          - name: immat
+            data_type: text
+          - name: type_vehicule
+            data_type: text
