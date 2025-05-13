@@ -1,6 +1,21 @@
 import pandas as pd
-import psycopg2
 from sqlalchemy import create_engine
+
+from dotenv import load_dotenv
+import os
+
+# Charger les variables d'environnement depuis le fichier .env
+load_dotenv()
+
+# Récupérer les informations sensibles depuis les variables d'environnement
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+db_name = os.getenv("DB_NAME")
+
+# Connexion à PostgreSQL
+engine = create_engine(f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}")
 
 # Charger le fichier
 df = pd.read_csv("raw/Data2018_2023.csv", sep=";", encoding="utf-8")
@@ -22,6 +37,5 @@ df['kms'] = (
     .str.replace(" ", "", regex=False)    # Supprimer les espaces (séparateurs de milliers)
     .astype(float)                        # Convertir la colonne en float
 )
-# Connexion à PostgreSQL
-engine = create_engine("postgresql+psycopg2://postgres:CleaThaisMuriel1982@localhost:5432/entretienvehicule")
+
 df.to_sql("raw_entretiens", engine, if_exists="replace", index=False)
