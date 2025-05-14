@@ -5,26 +5,65 @@
 {% block content %}
 <main>
   <header class="flex justify-center">
-    <h2 class="text-2xl">Données de la base de données</h2>
+    <h2 class="text-2xl mb-6">Données de la base de données</h2>
   </header>
-  <div class="table table-zebra bg-primary">
-    <table class="mx-auto w-xl">
-      <!-- head -->
-      <thead>
+
+  <!-- Filtres -->
+  <form method="get" class="mb-4">
+    <div class="flex space-x-4 my-6"> <!-- Utilisation de flexbox pour aligner les éléments -->
+      <!-- Sélectionner une immatriculation -->
+      <div>
+        <label class="label block mb-2">Sélectionner une immatriculation</label>
+        <select name="immat" onchange="this.form.submit()" class="select select-bordered bg-base-100">
+          <option value="">-- Toutes --</option>
+          {% for i in distinct_immat %}
+            <option value="{{ i }}" {% if request.GET.immat == i %}selected{% endif %}>{{ i }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- Sélectionner un type d'opération -->
+      <div>
+        <label class="label block mb-2">Sélectionner un type d'opération</label>
+        <select name="operation" onchange="this.form.submit()" class="select select-bordered bg-base-100">
+          <option value="">-- Toutes --</option>
+          {% for o in distinct_operations %}
+            <option value="{{ o }}" {% if request.GET.operation == o %}selected{% endif %}>{{ o }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- Carte pour le montant total des coûts -->
+      <div>
+        <label class="label block mb-1">Montant total des coûts</label>      
+        <div class="shadow-lg shadow-accent p-2">              
+           <p class="text-2xl font-semibold">{{ total_cost }} €</p>         
+        </div>
+      </div>
+
+    </div>
+  </form>
+  <!-- Tableaux -->
+  <div
+    class="h-96 overflow-x-auto rounded-box border border-neutral-content/5 bg-white"
+  >
+    <table class="table table-zebra">
+      <!-- Head -->
+      <thead class="bg-accent sticky top-0 z-10">
         <tr>
-          <th>date</th>
-          <th>immat</th>
-          <th>cost</th>
-          <th>supplier</th>
+          <th>Date</th>
+          <th>Immatriculation</th>
+          <th>Coût</th>
+          <th>operation</th>
+          <th>Fournisseur</th>
         </tr>
       </thead>
-      <!-- body -->
+      <!-- Body -->
       <tbody>
         {% for row in entretien_data %}
         <tr>
-          <td>{{ row.date }}</td>
+          <td>{{ row.date|date:"d/m/Y" }}</td>
           <td>{{ row.immat }}</td>
-          <td>{{ row.cost }}</td>
+          <td>{{ row.cost|floatformat:2 }} €</td>
+          <td>{{ row.operation }}</td>
           <td>{{ row.supplier }}</td>
         </tr>
         {% endfor %}
