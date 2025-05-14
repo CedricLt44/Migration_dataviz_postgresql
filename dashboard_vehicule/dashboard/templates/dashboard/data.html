@@ -5,7 +5,7 @@
 {% block content %}
 <main>
   <header class="flex justify-center">
-    <h2 class="text-2xl mb-6">Données de la base de données</h2>
+    <h2 class="text-2xl mb-6">Coûts des entretiens de la flotte</h2>
   </header>
 
   <!-- Filtres -->
@@ -31,14 +31,13 @@
           {% endfor %}
         </select>
       </div>
-      <!-- Carte pour le montant total des coûts -->
+      <!-- PieChart pour le montant total des coûts -->
       <div>
         <label class="label block mb-1">Montant total des coûts</label>      
         <div class="shadow-lg shadow-accent p-2">              
            <p class="text-2xl font-semibold">{{ total_cost }} €</p>         
         </div>
       </div>
-
     </div>
   </form>
   <!-- Tableaux -->
@@ -70,6 +69,26 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Graphiques -->
+  <div class="flex flex-wrap space-x-4 my-6">
+    <!-- pieChart -->
+    <div class="card w-[50rem] shadow-lg shadow-accent mt-6">
+      <div class="card-body items-center">
+        <h3 class="text-xl font-semibold mb-4">Répartition des coûts par opération</h3>
+        <div>{{ operation_chart|safe }}</div>
+      </div>
+    </div>
+
+    <!-- barChart -->
+    <div class="card w-[50rem] shadow-lg shadow-accent mt-6">
+      <div class="card-body items-center">
+        <h3 class="text-xl font-semibold mb-4">Coûts totaux par immatriculation</h3>
+        <div>{{ operation_histogram|safe }}</div>
+      </div>
+    </div>
+  </div>
+
 </main>
 <!-- fin de la page -->
 {%endblock %}
