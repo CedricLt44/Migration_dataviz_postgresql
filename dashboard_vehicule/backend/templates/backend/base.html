@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Account</title>
+    <title>Dashboard</title>
     <!-- tailwind css -->
     <link rel="stylesheet" href="{% static 'dist/styles.css' %}" />
     <!-- boxicons -->
@@ -22,10 +22,30 @@
         <a href="" class="btn btn-outline btn-secondary text-lg">SIGN UP</a>
       </div>
       <div class="flex-1 flex justify-center space-x-4">
-        <a href="" class="btn btn-outline btn-info">DASHBOARD</a>
+        <a href="{% url 'backend:index' %}" class="btn btn-outline btn-info"
+          >HOME</a
+        >
+        <a href="{% url 'dashboard:data' %}" class="btn btn-outline btn-info"
+          >DASHBOARD</a
+        >
       </div>
 
-      <div class="flex justify-end">
+      <div class="flex justify-end space-x-2 ">
+        <a
+          class="text-3xl text-primary hover:text-accent cursor-pointer"
+          href="https://www.linkedin.com/in/cedric-le-tutour"
+          target="_blank"
+          aria-label="LinkedIn"
+          ><i class="bx bxl-linkedin"></i
+        ></a>
+
+        <a
+          class="text-3xl text-primary hover:text-accent cursor-pointer"
+          href="https://github.com/CedricLt44"
+          target="_blank"
+          aria-label="GitHub"
+          ><i class="bx bxl-github"></i
+        ></a>
         <a
           class=" bx bx-cog text-3xl text-primary hover:text-accent cursor-pointer"
           href="{% url 'admin:index' %}"

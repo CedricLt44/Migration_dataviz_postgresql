@@ -1,0 +1,36 @@
+{% extends 'backend/base.html' %}
+<!-- charge les templates -->
+{% load static %}
+<!-- debut de la page -->
+{% block content %}
+<main>
+  <header class="flex justify-center">
+    <h2 class="text-2xl">Données de la base de données</h2>
+  </header>
+  <div class="table table-zebra bg-primary">
+    <table class="mx-auto w-xl">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>immat</th>
+          <th>cost</th>
+          <th>supplier</th>
+        </tr>
+      </thead>
+      <!-- body -->
+      <tbody>
+        {% for row in entretien_data %}
+        <tr>
+          <td>{{ row.date }}</td>
+          <td>{{ row.immat }}</td>
+          <td>{{ row.cost }}</td>
+          <td>{{ row.supplier }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+<!-- fin de la page -->
+{%endblock %}

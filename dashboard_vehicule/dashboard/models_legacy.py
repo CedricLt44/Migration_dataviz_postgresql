@@ -9,6 +9,7 @@ from django.db import models
 
 
 class RawConso(models.Model):
+    id = models.AutoField(primary_key=True)  # Clé primaire auto-incrémentée
     date = models.DateTimeField(db_column='Date', blank=True, null=True)  # Field name made lowercase.
     type_vehicule = models.TextField(db_column='Type_vehicule', blank=True, null=True)  # Field name made lowercase.
     immat = models.TextField(blank=True, null=True)
@@ -29,6 +30,7 @@ class RawConso(models.Model):
 
 
 class RawEntretiens(models.Model):
+    id = models.AutoField(primary_key=True)  # Clé primaire auto-incrémentée
     year = models.FloatField(blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
     immat = models.TextField(blank=True, null=True)
@@ -46,7 +48,7 @@ class RawEntretiens(models.Model):
 
 
 class RawImmat(models.Model):
-    immat = models.TextField(blank=True, null=True)
+    immat = models.TextField(primary_key=True)
     type_vehicule = models.TextField(blank=True, null=True)
 
     class Meta:
