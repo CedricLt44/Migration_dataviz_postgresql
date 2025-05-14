@@ -16,15 +16,22 @@
   </head>
 
   <body>
-    <div class="navbar justify-around shadow-sm">
-      <a href="" class="btn btn-outline btn-secondary text-lg">LOGIN</a>
-      <a href="" class="btn btn-outline btn-secondary text-lg">SIGN UP</a>
-      <a
-        class=" bx bx-cog text-3xl text-secondary hover:text-accent cursor-pointer"
-        href="{% url 'admin:index' %}"
-      ></a>
-    </div>
+    <div class="navbar shadow-sm justify-between items-center">
+      <div class="flex space-x-2 justify-start">
+        <a href="" class="btn btn-outline btn-secondary text-lg">LOGIN</a>
+        <a href="" class="btn btn-outline btn-secondary text-lg">SIGN UP</a>
+      </div>
+      <div class="flex-1 flex justify-center space-x-4">
+        <a href="" class="btn btn-outline btn-info">DASHBOARD</a>
+      </div>
 
+      <div class="flex justify-end">
+        <a
+          class=" bx bx-cog text-3xl text-primary hover:text-accent cursor-pointer"
+          href="{% url 'admin:index' %}"
+        ></a>
+      </div>
+    </div>
     <main class="m-9 py-8 px-8">{% block content %} {% endblock %}</main>
   </body>
 </html>
